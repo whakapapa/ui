@@ -94,34 +94,34 @@ func numbersTab() ui.Control {
 	// objects in lists group
 
 	// build combo box
-	cbLinux	:= "Linux"
-	cbApple	:= "Apple"
-	cbMS		:= "Microsoft"
+	txtCBlinux	:= "Linux"
+	txtCBapple	:= "Apple"
+	txtCBms		:= "Microsoft"
 
-	cBox		:= ui.NewCombobox()
-	cBox.Append(cbLinux)
-	cBox.Append(cbApple)
-	cBox.Append(cbMS)
+	cBox			:= ui.NewCombobox()
+	cBox.Append(txtCBlinux)
+	cBox.Append(txtCBapple)
+	cBox.Append(txtCBms)
 
 	// build editable box
-	ebWater	:= "Water"
-	ebBeer	:= "Beer"
-	ebTea		:= "Tea"
+	txtEwater	:= "Water"
+	txtEbeer		:= "Beer"
+	txtEtea		:= "Tea"
 
-	eBox		:= ui.NewEditableCombobox()
-	eBox.Append(ebWater)
-	eBox.Append(ebBeer)
-	eBox.Append(ebTea)
+	eBox			:= ui.NewEditableCombobox()
+	eBox.Append(txtEwater)
+	eBox.Append(txtEbeer)
+	eBox.Append(txtEtea)
 
 	// build radio buttons
-	rbBMW		:= "BMW"
-	rbAudi	:= "Audi"
-	rbMerc	:= "Mercedes"
+	txtRbmw		:= "BMW"
+	txtRaudi		:= "Audi"
+	txtRmerc		:= "Mercedes"
 
 	rButton	:= ui.NewRadioButtons()
-	rButton.Append(rbBMW)
-	rButton.Append(rbAudi)
-	rButton.Append(rbMerc)
+	rButton.Append(txtRbmw)
+	rButton.Append(txtRaudi)
+	rButton.Append(txtRmerc)
 
 	// construct the list box
 	boxList := ui.NewVerticalBox()
@@ -236,12 +236,11 @@ func dataTab(parentWin *ui.Window) ui.Control {
 
 func setupUI() {
 
-	//var mainWin *ui.Window
 	// construct the main window
-	winHead	:= "Control Gallery"
+	txtWin	:= "Control Gallery"
 	winX		:= 640
 	winY		:= 480
-	mainWin	:= ui.NewWindow(winHead, winX, winY, true)
+	mainWin	:= ui.NewWindow(txtWin, winX, winY, true)
 
 	// construct the main window tabs
 	txtBasic		:= "Basic Controls"
