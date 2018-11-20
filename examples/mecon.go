@@ -1,11 +1,7 @@
 package main
 
-import (
-	"github.com/andlabs/ui"
-	//	_ "github.com/andlabs/ui/winmanifest"
-)
+import "github.com/andlabs/ui"
 
-var mainWin *ui.Window
 
 func basicTab() ui.Control {
 
@@ -20,16 +16,16 @@ func basicTab() ui.Control {
 	bbxcNope		:= ui.NewCheckbox("Nope")
 
 	// build the first box
-	tabBox := ui.NewHorizontalBox()
-	tabBox.SetPadded(true)
-	tabBox.Append(bbxbButton, false)
-	tabBox.Append(bbxbElse, false)
-	tabBox.Append(bbxcCheck, false)
-	tabBox.Append(bbxcYup, false)
-	tabBox.Append(bbxcNope, false)
+	boxF := ui.NewHorizontalBox()
+	boxF.SetPadded(true)
+	boxF.Append(bbxbButton, false)
+	boxF.Append(bbxbElse, false)
+	boxF.Append(bbxcCheck, false)
+	boxF.Append(bbxcYup, false)
+	boxF.Append(bbxcNope, false)
 
 	// separator
-	tabSep		:= ui.NewHorizontalSeparator()
+	boxSep		:= ui.NewHorizontalSeparator()
 
 	// different group form entry fields
 	grpEntry		:= ui.NewEntry()
@@ -48,18 +44,18 @@ func basicTab() ui.Control {
 	grpForm.Append("NoWrap", grpMnwrap, true)
 
 	// build the group
-	tabGroup := ui.NewGroup("Input")
-	tabGroup.SetMargined(true)
-	tabGroup.SetChild(grpForm)
+	groupInput := ui.NewGroup("Input")
+	groupInput.SetMargined(true)
+	groupInput.SetChild(grpForm)
 
-	// now construct the tab
-	btab := ui.NewVerticalBox()
-	btab.SetPadded(false)
-	btab.Append(tabBox, false)
-	btab.Append(tabSep, false)
-	btab.Append(tabGroup, true)
+	// build basic control result
+	ctlBasic := ui.NewVerticalBox()
+	ctlBasic.SetPadded(false)
+	ctlBasic.Append(boxF, false)
+	ctlBasic.Append(boxSep, false)
+	ctlBasic.Append(groupInput, true)
 
-	return btab
+	return ctlBasic
 }
 
 func numbersTab() ui.Control {
@@ -83,17 +79,17 @@ func numbersTab() ui.Control {
 	ip.SetValue(-1)
 
 	// construct number box in group
-	nbox := ui.NewVerticalBox()
-	nbox.SetPadded(true)
-	nbox.Append(spinbox, false)
-	nbox.Append(slider, false)
-	nbox.Append(pbar, false)
-	nbox.Append(ip, false)
+	boxNumber := ui.NewVerticalBox()
+	boxNumber.SetPadded(true)
+	boxNumber.Append(spinbox, false)
+	boxNumber.Append(slider, false)
+	boxNumber.Append(pbar, false)
+	boxNumber.Append(ip, false)
 
 	// numers group
-	tabNumbers := ui.NewGroup("Numbers")
-	tabNumbers.SetMargined(true)
-	tabNumbers.SetChild(nbox)
+	groupNumbers := ui.NewGroup("Numbers")
+	groupNumbers.SetMargined(true)
+	groupNumbers.SetChild(boxNumber)
 
 	// objects in lists group
 
@@ -128,139 +124,137 @@ func numbersTab() ui.Control {
 	rButton.Append(rbMerc)
 
 	// construct the list box
-	lbox := ui.NewVerticalBox()
-	lbox.SetPadded(true)
-	lbox.Append(cBox, false)
-	lbox.Append(eBox, false)
-	lbox.Append(rButton, false)
+	boxList := ui.NewVerticalBox()
+	boxList.SetPadded(true)
+	boxList.Append(cBox, false)
+	boxList.Append(eBox, false)
+	boxList.Append(rButton, false)
 
 	// build the lists group
-	tabLists := ui.NewGroup("Lists")
-	tabLists.SetMargined(true)
-	tabLists.SetChild(lbox)
+	groupLists := ui.NewGroup("Lists")
+	groupLists.SetMargined(true)
+	groupLists.SetChild(boxList)
 
 
-	// build the numbers tab
-	ntab := ui.NewHorizontalBox()
-	ntab.SetPadded(true)
-	ntab.Append(tabNumbers, true)
-	ntab.Append(tabLists, true)
+	// build number control result
+	ctlNumber := ui.NewHorizontalBox()
+	ctlNumber.SetPadded(true)
+	ctlNumber.Append(groupNumbers, true)
+	ctlNumber.Append(groupLists, true)
 
-	return ntab
+	return ctlNumber
 }
 
-func dataTab() ui.Control {
+func dataTab(parentWin *ui.Window) ui.Control {
 
-	hbox := ui.NewHorizontalBox()
-	hbox.SetPadded(true)
+	// picker objects
+	pDate		:= ui.NewDatePicker()
+	pTime		:= ui.NewTimePicker()
+	pDtime	:= ui.NewDateTimePicker()
+	pFont		:= ui.NewFontButton()
+	pColor	:= ui.NewColorButton()
 
-	vbox := ui.NewHorizontalBox()
-	vbox.SetPadded(true)
-	hbox.Append(vbox, false)
+	// construct box
+	boxPick := ui.NewVerticalBox()
+	boxPick.SetPadded(true)
+	boxPick.Append(pDate, false)
+	boxPick.Append(pTime, false)
+	boxPick.Append(pDtime, false)
+	boxPick.Append(pFont, false)
+	boxPick.Append(pColor, false)
 
-	vbox.Append(ui.NewDatePicker(), false)
-	vbox.Append(ui.NewTimePicker(), false)
-	vbox.Append(ui.NewDateTimePicker(), false)
-	vbox.Append(ui.NewFontButton(), false)
-	vbox.Append(ui.NewColorButton(), false)
+	// build choosers - open file
+	fEntryOpen := ui.NewEntry()
+	fEntryOpen.SetReadOnly(true)
 
-	hbox.Append(ui.NewVerticalSeparator(), false)
-
-	vbox = ui.NewVerticalBox()
-	vbox.SetPadded(true)
-	hbox.Append(vbox, true)
-
-	grid := ui.NewGrid()
-	grid.SetPadded(true)
-	vbox.Append(grid, false)
-
-	button := ui.NewButton("Open File")
-	entry := ui.NewEntry()
-	entry.SetReadOnly(true)
-	button.OnClicked(func(*ui.Button) {
-		filename := ui.OpenFile(mainWin)
-		if filename == "" {
-			filename = "(cancelled)"
+	fOpenButton := ui.NewButton("Open File")
+	fOpenButton.OnClicked(func(*ui.Button) {
+		fNameOpen := ui.OpenFile(parentWin)
+		if fNameOpen == "" {
+			fNameOpen = "(cancelled)"
 		}
-		entry.SetText(filename)
+		fEntryOpen.SetText(fNameOpen)
 	})
-	grid.Append(button,
-		0, 0, 1, 1,
-		false, ui.AlignFill, false, ui.AlignFill)
-	grid.Append(entry,
-		1, 0, 1, 1,
-		true, ui.AlignFill, false, ui.AlignFill)
 
-	button = ui.NewButton("Save File")
-	entry2 := ui.NewEntry()
-	entry2.SetReadOnly(true)
-	button.OnClicked(func(*ui.Button) {
-		filename := ui.SaveFile(mainWin)
-		if filename == "" {
-			filename = "(cancelled)"
+	// build choosers - save file
+	fEntrySave := ui.NewEntry()
+	fEntrySave.SetReadOnly(true)
+
+	fSaveButton := ui.NewButton("Save File")
+	fSaveButton.OnClicked(func(*ui.Button) {
+		fNameSave := ui.SaveFile(parentWin)
+		if fNameSave == "" {
+			fNameSave = "(cancelled)"
 		}
-		entry2.SetText(filename)
+		fEntrySave.SetText(fNameSave)
 	})
-	grid.Append(button,
-		0, 1, 1, 1,
-		false, ui.AlignFill, false, ui.AlignFill)
-	grid.Append(entry2,
-		1, 1, 1, 1,
-		true, ui.AlignFill, false, ui.AlignFill)
 
-	msggrid := ui.NewGrid()
-	msggrid.SetPadded(true)
-	grid.Append(msggrid,
-		0, 2, 2, 1,
-		false, ui.AlignCenter, false, ui.AlignStart)
+	// build grid - choosers
+	gridChooser := ui.NewGrid()
+	gridChooser.SetPadded(true)
+	gridChooser.Append(fOpenButton, 0, 0, 1, 1, false, ui.AlignFill, false, ui.AlignFill)
+	gridChooser.Append(fEntryOpen, 1, 0, 1, 1, true, ui.AlignFill, false, ui.AlignFill)
+	gridChooser.Append(fSaveButton, 0, 1, 1, 1, false, ui.AlignFill, false, ui.AlignFill)
+	gridChooser.Append(fEntrySave, 1, 1, 1, 1, true, ui.AlignFill, false, ui.AlignFill)
 
-	button = ui.NewButton("Message Box")
-	button.OnClicked(func(*ui.Button) {
-		ui.MsgBox(mainWin,
-			"This is a normal message box.",
-			"More detailed information can be shown here.")
+	// create message button
+	messageButton := ui.NewButton("Message Box")
+	messageButton.OnClicked(func(*ui.Button) {
+		ui.MsgBox(parentWin, "Listen", "Good on ya mate, howyadoinalright")
 	})
-	msggrid.Append(button,
-		0, 0, 1, 1,
-		false, ui.AlignFill, false, ui.AlignFill)
-	button = ui.NewButton("Error Box")
-	button.OnClicked(func(*ui.Button) {
-		ui.MsgBoxError(mainWin,
-			"This message box describes an error.",
-			"More detailed information can be shown here.")
-	})
-	msggrid.Append(button,
-		1, 0, 1, 1,
-		false, ui.AlignFill, false, ui.AlignFill)
 
-	return hbox
+	// create error button
+	errorButton := ui.NewButton("Error Box")
+	errorButton.OnClicked(func(*ui.Button) {
+		ui.MsgBoxError(parentWin, "Panic", "Something went south.")
+	})
+
+	// build grid - message
+	gridMessage := ui.NewGrid()
+	gridMessage.SetPadded(true)
+	gridMessage.Append(messageButton, 0, 0, 1, 1, false, ui.AlignFill, false, ui.AlignFill)
+	gridMessage.Append(errorButton, 1, 0, 1, 1, false, ui.AlignFill, false, ui.AlignFill)
+
+	// Create separator
+	boxSep := ui.NewVerticalSeparator()
+
+	// build box and attach grid
+	boxChoose := ui.NewVerticalBox()
+	boxChoose.SetPadded(true)
+	boxChoose.Append(gridChooser, false)
+	boxChoose.Append(gridMessage, false)
+
+	// build data control result
+	ctlData := ui.NewHorizontalBox()
+	ctlData.SetPadded(true)
+	ctlData.Append(boxPick, false)
+	ctlData.Append(boxSep, false)
+	ctlData.Append(boxChoose, true)
+
+	return ctlData
 }
 
 func setupUI() {
 
-	// construct the main window tabs
-	tabBasic		:= "Basic Controls"
-	tabNumbers	:= "Numbers and Lists"
-	tabData		:= "Data Choosers"
-
-	mainTab := ui.NewTab()
-
-	mainTab.Append(tabBasic, basicTab())
-	mainTab.SetMargined(0, true)
-
-	mainTab.Append(tabNumbers, numbersTab())
-	mainTab.SetMargined(1, true)
-
-	mainTab.Append(tabData, dataTab())
-	mainTab.SetMargined(2, true)
-
-
+	//var mainWin *ui.Window
 	// construct the main window
-	winHead := "Control Gallery"
+	winHead	:= "Control Gallery"
 	winX		:= 640
 	winY		:= 480
+	mainWin	:= ui.NewWindow(winHead, winX, winY, true)
 
-	mainWin	= ui.NewWindow(winHead, winX, winY, true)
+	// construct the main window tabs
+	txtBasic		:= "Basic Controls"
+	txtNumbers	:= "Numbers and Lists"
+	txtData		:= "Data Choosers"
+
+	mainTab := ui.NewTab()
+	mainTab.Append(txtBasic, basicTab())
+	mainTab.SetMargined(0, true)
+	mainTab.Append(txtNumbers, numbersTab())
+	mainTab.SetMargined(1, true)
+	mainTab.Append(txtData, dataTab(mainWin))
+	mainTab.SetMargined(2, true)
 
 	// main window behavior
 	mainWin.OnClosing(func(*ui.Window) bool {
@@ -272,9 +266,9 @@ func setupUI() {
 		return true
 	})
 
+	// launch the main window
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
-
 	mainWin.Show()
 }
 
