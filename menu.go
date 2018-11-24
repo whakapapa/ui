@@ -36,7 +36,7 @@ func NewMenu(text string) *Menu {
 
 
 // MenuAppendQuitItem adds a quit menu
-func MenuAppendQuitItem() *MenuItem {
+func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
