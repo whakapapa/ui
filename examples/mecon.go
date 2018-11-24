@@ -247,6 +247,7 @@ func setupUI() {
 
 	//TODO test menu item
 	mainMenu := ui.NewMenu("my menu")
+	mainMenu := ui.MenuAppendQuitItem()
 /*
 	menuQuit := ui.MenuAppendQuitItem(mainMenu)
 	mainQuit.MenuItemEnable()
@@ -277,7 +278,7 @@ func setupUI() {
 
 	// launch the main window
 //TODO remove the latter?
-//	mainWin.SetChild(mainMenu)
+	mainWin.SetChild(mainMenu)
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
 	mainWin.Show()

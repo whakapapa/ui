@@ -17,6 +17,11 @@ type Menu struct {
 	m *C.uiMenu
 }
 
+type MenuItem struct {
+	ControlBase
+	mi *C.uiMenuItem
+}
+
 
 // NewMenu creates a new menu
 func NewMenu(text string) *Menu {
@@ -28,3 +33,16 @@ func NewMenu(text string) *Menu {
 	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 	return m
 }
+
+
+// MenuAppendQuitItem adds a quit menu
+func MenuAppendQuitItem() *MenuItem {
+	mi := new(MenuItem)
+
+	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	return mi
+}
+
+
+
+// MenuItemEnable enables the menu
