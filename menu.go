@@ -28,25 +28,3 @@ func NewMenu(text string) *Menu {
 	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 	return m
 }
-
-
-
-
-//TODO old label code for reference
-
-/*
-// Text returns the Label's text.
-func (l *Label) Text() string {
-	ctext := C.uiLabelText(l.l)
-	text := C.GoString(ctext)
-	C.uiFreeText(ctext)
-	return text
-}
-
-// SetText sets the Label's text to text.
-func (l *Label) SetText(text string) {
-	ctext := C.CString(text)
-	C.uiLabelSetText(l.l, ctext)
-	freestr(ctext)
-}
-*/
