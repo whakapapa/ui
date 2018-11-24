@@ -34,7 +34,7 @@ func NewMenu(text string) *Menu {
 
 //TODO old label code for reference
 
-
+/*
 // Text returns the Label's text.
 func (l *Label) Text() string {
 	ctext := C.uiLabelText(l.l)
@@ -49,3 +49,4 @@ func (l *Label) SetText(text string) {
 	C.uiLabelSetText(l.l, ctext)
 	freestr(ctext)
 }
+*/

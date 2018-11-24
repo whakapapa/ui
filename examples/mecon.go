@@ -1,6 +1,7 @@
 package main
 
-import "github.com/andlabs/ui"
+//import "github.com/andlabs/ui"
+import "github.com/whakapapa/ui"
 
 
 func basicTab() ui.Control {
