@@ -44,5 +44,13 @@ func (m *Menu) MenuAppendQuitItem() *MenuItem {
 }
 
 
-
 // MenuItemEnable enables the menu
+func (mi *uiMenuItem) MenuItemEnable() {
+	C.uiMenuItemEnable(mi.mi)
+}
+
+
+// MenuItemDisable disables the menu
+func (mi *uiMenuItem) MenuItemDisable() {
+	C.uiMenuItemDisable(mi.mi)
+}
