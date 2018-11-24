@@ -240,7 +240,16 @@ func setupUI() {
 	txtWin	:= "Control Gallery"
 	winX		:= 640
 	winY		:= 480
-	mainWin	:= ui.NewWindow(txtWin, winX, winY, true)
+	menBar	:= true
+	mainWin	:= ui.NewWindow(txtWin, winX, winY, menBar)
+
+
+	//TODO test menu item
+	mainMenu := ui.NewMenu("my menu")
+/*
+	menuQuit := ui.MenuAppendQuitItem(mainMenu)
+	mainQuit.MenuItemEnable()
+*/	//TODO END
 
 	// construct the main window tabs
 	txtBasic		:= "Basic Controls"
@@ -266,6 +275,8 @@ func setupUI() {
 	})
 
 	// launch the main window
+//TODO remove the latter?
+//	mainWin.SetChild(mainMenu)
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
 	mainWin.Show()
