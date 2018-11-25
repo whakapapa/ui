@@ -43,6 +43,7 @@ func NewMenu(text string) *Menu {
 func (m *Menu) MenuAppendSeparator() {
 	C.uiMenuAppendSeparator(m.m)
 
+//TODO this is likely obsolete
 //	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 }
 
@@ -50,6 +51,7 @@ func (m *Menu) MenuAppendSeparator() {
 // MenuAppendItem adds a custom item
 func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi := new(MenuItem)
+
 	ctext := C.CString(text)
 	C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
@@ -63,6 +65,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 // uiMenuAppendAboutItem adds an about item
 func (m *Menu) MenuAppendAboutItem() *MenuItem {
 	mi := new(MenuItem)
+
 	C.uiMenuAppendAboutItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
@@ -74,6 +77,7 @@ func (m *Menu) MenuAppendAboutItem() *MenuItem {
 // uiMenuAppendPreferencesItem adds preferences item
 func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 	mi := new(MenuItem)
+
 	C.uiMenuAppendPreferencesItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
@@ -81,10 +85,26 @@ func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 	return mi
 }
 
+
 // MenuAppendQuitItem adds a quit menu
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)
+
 	C.uiMenuAppendQuitItem(m.m)
+
+	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+
+	return mi
+}
+
+
+// MenuAppendCheckItem adds a check item
+func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
+	mi := new(MenuItem)
+
+	ctext := C:CString(text)
+	C.uiMenuAppendCheckItem(ctext)
+	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
