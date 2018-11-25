@@ -54,7 +54,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
 
-	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+//	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }

@@ -239,9 +239,6 @@ func createWindow() {
 
 	// menu structure first
 	mainMenu := ui.NewMenu("Main")
-	backMenu := ui.NewMenu("Back")
-
-	// attach items to main menu
 
 
 	// attach items to main menu
@@ -249,7 +246,7 @@ func createWindow() {
 //	mainMenu.MenuAppendQuitItem()
 //	mainMenu.MenuItemEnable()
 //	mainMenu.MenuAppendItem("dudu")
-	mainMenu.MenuAppendSeparator()
+//	mainMenu.MenuAppendSeparator()
 
 	// construct the main window
 	txtWin	:= "Control Gallery"
@@ -294,7 +291,6 @@ func createWindow() {
 
 	// launch the main window
 	mainWin.SetChild(mainMenu)
-	mainWin.SetChild(backMenu)
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
 	mainWin.Show()
