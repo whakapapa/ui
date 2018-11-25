@@ -37,6 +37,19 @@ func NewMenu(text string) *Menu {
 }
 
 
+// MenuAppendItem adds a custom item
+func (m *Menu) MenuAppendItem(text string) *MenuItem {
+	mi := new(MenuItem)
+
+	ctext := C.CString(text)
+	C.uiMenuAppendItem(m.m, ctext)
+	freestr(ctext)
+
+	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	return mi
+}
+
+
 // MenuAppendQuitItem adds a quit menu
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)

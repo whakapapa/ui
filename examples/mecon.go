@@ -239,8 +239,9 @@ func createWindow() {
 
 	mainMenu := ui.NewMenu("Main")
 	backMenu := ui.NewMenu("Back")
-	backMenu.MenuAppendQuitItem()
-	//	backMenu.MenuItemEnable()
+//	backMenu.MenuAppendQuitItem()
+//	backMenu.MenuItemEnable()
+	backMenu.MenuAppendItem("dudu")
 
 
 	// construct the main window
@@ -266,7 +267,6 @@ func createWindow() {
 	mainTab.SetMargined(2, true)
 
 	// quit button behavior
-
 	/*
 	backMquit.MenuItemOnClicked(func(*ui.MenuItem) {
 		ui.Quit()
@@ -277,6 +277,10 @@ func createWindow() {
 	// main window behavior
 	mainWin.OnClosing(func(*ui.Window) bool {
 		ui.Quit()
+		return true
+	})
+	ui.OnShouldQuit(func() bool {
+		mainWin.Destroy()
 		return true
 	})
 
