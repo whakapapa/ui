@@ -1,4 +1,5 @@
 // 2018-11
+// test additions by Whakapapa
 
 package ui
 
@@ -10,19 +11,15 @@ import (
 import "C"
 
 // Menu is attached to windows if flag has been set to true
-
-
 type Menu struct {
-	ControlBase
 	m *C.uiMenu
+	ControlBase
 }
-
 
 type MenuItem struct {
 	ControlBase
 	mi *C.uiMenuItem
 }
-
 
 // NewMenu creates a new menu
 func NewMenu(text string) *Menu {

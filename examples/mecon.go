@@ -237,8 +237,14 @@ func dataTab(parentWin *ui.Window) ui.Control {
 
 func createWindow() {
 
+	// menu structure first
 	mainMenu := ui.NewMenu("Main")
 	backMenu := ui.NewMenu("Back")
+
+	// attach items to main menu
+
+
+	// attach items to back menu
 //	backMenu.MenuAppendQuitItem()
 //	backMenu.MenuItemEnable()
 	backMenu.MenuAppendItem("dudu")
