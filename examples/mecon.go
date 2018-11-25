@@ -241,7 +241,7 @@ func setupUI() {
 	txtWin	:= "Control Gallery"
 	winX		:= 640
 	winY		:= 480
-	menBar	:= true
+	menBar	:= false
 	mainWin	:= ui.NewWindow(txtWin, winX, winY, menBar)
 
 
@@ -272,10 +272,14 @@ func setupUI() {
 	mainTab.SetMargined(2, true)
 
 	// quit button behavior
+
+/*
 	menuQuit.MenuItemOnClicked(func(*ui.MenuItem) {
 		ui.Quit()
 		return true
 	})
+*/
+
 	// main window behavior
 	mainWin.OnClosing(func(*ui.Window) bool {
 		ui.Quit()
