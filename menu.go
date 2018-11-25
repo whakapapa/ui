@@ -102,7 +102,7 @@ func (m *Menu) MenuAppendQuitItem() *MenuItem {
 func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
 	mi := new(MenuItem)
 
-	ctext := C:CString(text)
+	ctext := C.CString(text)
 	C.uiMenuAppendCheckItem(ctext)
 	freestr(ctext)
 
