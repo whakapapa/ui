@@ -52,6 +52,11 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 }
 
 
+// creates new MenuItem object that the gui is aware of
+func NewMenuItem() *MenuItem {
+	return new(MenuItem)
+}
+
 // uiMenuAppendAboutItem adds an about item
 func (m *Menu) MenuAppendAboutItem(mi *MenuItem) {
 	mi.mi = C.uiMenuAppendAboutItem(m.m)
