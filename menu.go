@@ -19,6 +19,7 @@ type Menu struct {
 	m *C.uiMenu
 }
 
+
 type MenuItem struct {
 	ControlBase
 	mi *C.uiMenuItem
@@ -30,6 +31,7 @@ func NewMenu(text string) *Menu {
 	m := new(Menu)
 
 	ctext := C.CString(text)
+	C.uiNewMenu(ctext)
 	freestr(ctext)
 
 	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
@@ -336,32 +338,6 @@ HMENU makeMenubar(void)
 	return menubar;
 }
 
-void runMenuEvent(WORD id, uiWindow *w)
-{
-	uiMenu *m;
-	uiMenuItem *item;
-	size_t i, j;
-
-	// this isn't optimal, but it works, and it should be just fine for most cases
-	for (i = 0; i < len; i++) {
-		m = menus[i];
-		for (j = 0; j < m->len; j++) {
-			item = m->items[j];
-			if (item->id == id)
-				goto found;
-		}
-	}
-	// no match
-	uiprivImplBug("unknown menu ID %hu in runMenuEvent()", id);
-
-found:
-	// first toggle checkboxes, if any
-	if (item->type == typeCheckbox)
-		uiMenuItemSetChecked(item, !uiMenuItemChecked(item));
-
-	// then run the event
-	(*(item->onClicked))(item, w, item->onClickedData);
-}
 
 static void freeMenu(uiMenu *m, HMENU submenu)
 {

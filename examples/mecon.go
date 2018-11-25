@@ -247,12 +247,16 @@ func setupUI() {
 
 	//TODO test menu item
 	mainMenu := ui.NewMenu("my menu")
-	menuQuit := mainMenu.MenuAppendQuitItem()
+//	menuQuit := mainMenu.MenuAppendQuitItem()
+
+
 //	menuQuit.MenuItemEnable()
 /*
 	menuQuit := ui.MenuAppendQuitItem(mainMenu)
 	mainQuit.MenuItemEnable()
-*/	//TODO END
+	//TODO END
+*/
+
 
 	// construct the main window tabs
 	txtBasic		:= "Basic Controls"
@@ -277,10 +281,13 @@ func setupUI() {
 		ui.Quit()
 		return true
 	})
+
+	/*
 	ui.OnShouldQuit(func() bool {
 		mainWin.Destroy()
 		return true
 	})
+	*/
 
 	// launch the main window
 	mainWin.SetChild(mainMenu)
