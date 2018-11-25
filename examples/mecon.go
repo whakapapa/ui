@@ -244,11 +244,11 @@ func createWindow() {
 	// attach items to main menu
 
 
-	// attach items to back menu
-//	backMenu.MenuAppendQuitItem()
-//	backMenu.MenuItemEnable()
-	backMenu.MenuAppendItem("dudu")
-
+	// attach items to main menu
+//	mainMenu.MenuAppendQuitItem()
+//	mainMenu.MenuItemEnable()
+//	mainMenu.MenuAppendItem("dudu")
+	mainMenu.MenuAppendSeparator()
 
 	// construct the main window
 	txtWin	:= "Control Gallery"

@@ -33,6 +33,13 @@ func NewMenu(text string) *Menu {
 	return m
 }
 
+// MenuAppendSeparator adds a separator item
+func (m *Menu) MenuAppendSeparator() {
+	C.uiMenuAppendSeparator(m.m)
+
+	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
+}
+
 
 // MenuAppendItem adds a custom item
 func (m *Menu) MenuAppendItem(text string) *MenuItem {
