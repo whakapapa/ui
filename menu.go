@@ -109,14 +109,16 @@ func (mi *MenuItem) MenuItemDisable() {
 //TODO convert check mark and result to bool
 // verify if menu item is checked or not
 func (mi *MenuItem) MenuItemChecked() int {
-	return C.uiMenuItemChecked(mi.mi)
+	var checked int
+	checked = C.uiMenuItemChecked(mi.mi)
+	return checked
 }
 
 
 //TODO convert check mark and result to bool
 // set the checked flag
-func (mi *MenuItem) MenuItemSetChecked(ch int) {
-	C.uiMenuItemSetChecked(mi.mi, ch)
+func (mi *MenuItem) MenuItemSetChecked(checked int) {
+	C.uiMenuItemSetChecked(mi.mi, checked)
 }
 
 
