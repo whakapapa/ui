@@ -6,8 +6,6 @@ import (
 	"unsafe"
 )
 
-//TODO check if the latter is required - assume wont compile
-// // // #include "uipriv_windows.hpp"
 // #include "pkgui.h"
 import "C"
 
