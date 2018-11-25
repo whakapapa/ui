@@ -70,6 +70,17 @@ func (m *Menu) MenuAppendAboutItem() *MenuItem {
 	return mi
 }
 
+
+// uiMenuAppendPreferencesItem adds preferences item
+func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
+	mi := new(MenuItem)
+	C.uiMenuAppendPreferencesItem(m.m)
+
+	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+
+	return mi
+}
+
 // MenuAppendQuitItem adds a quit menu
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)

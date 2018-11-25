@@ -249,7 +249,7 @@ func createWindow() {
 //	mainMenu.MenuAppendQuitItem()
 //	mainMenu.MenuItemEnable()
 //	mainMenu.MenuAppendItem("dudu")
-//	mainMenu.MenuAppendSeparator()
+	mainMenu.MenuAppendSeparator()
 
 	// construct the main window
 	txtWin	:= "Control Gallery"
