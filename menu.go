@@ -15,14 +15,14 @@ import "C"
 
 // Menu is attached to windows if flag has been set to true
 type Menu struct {
-	m *C.uiMenu
 	ControlBase
+	m *C.uiMenu
 }
 
 
 type MenuItem struct {
-	mi *C.uiMenuItem
 	ControlBase
+	mi *C.uiMenuItem
 }
 
 
@@ -31,7 +31,7 @@ func NewMenu(text string) *Menu {
 	m := new(Menu)
 
 	ctext := C.CString(text)
-	m = C.uiNewMenu(ctext)
+	m.m = C.uiNewMenu(ctext)
 	freestr(ctext)
 
 	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
@@ -53,7 +53,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi := new(MenuItem)
 
 	ctext := C.CString(text)
-	mi = C.uiMenuAppendItem(m.m, ctext)
+	mi.mi = C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
@@ -66,7 +66,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 func (m *Menu) MenuAppendAboutItem() *MenuItem {
 	mi := new(MenuItem)
 
-	mi = C.uiMenuAppendAboutItem(m.m)
+	mi.mi = C.uiMenuAppendAboutItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
@@ -78,7 +78,7 @@ func (m *Menu) MenuAppendAboutItem() *MenuItem {
 func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 	mi := new(MenuItem)
 
-	mi = C.uiMenuAppendPreferencesItem(m.m)
+	mi.mi = C.uiMenuAppendPreferencesItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
@@ -90,7 +90,7 @@ func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)
 
-	mi = C.uiMenuAppendQuitItem(m.m)
+	mi.mi = C.uiMenuAppendQuitItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
@@ -103,8 +103,8 @@ func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
 	mi := new(MenuItem)
 
 	ctext := C.CString(text)
-//TODO fix this
-//	C.uiMenuAppendCheckItem(ctext)
+
+	mi.mi = C.uiMenuAppendCheckItem(ctext)
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))

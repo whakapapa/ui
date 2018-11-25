@@ -247,7 +247,7 @@ func createWindow() {
 //	mainMenu.MenuAppendQuitItem()
 //	mainMenu.MenuItemEnable()
 //	mainMenu.MenuAppendSeparator()
-	mainMenu.MenuAppendCheckItem("click me")
+//	mainMenu.MenuAppendCheckItem("click me")
 
 	// construct the main window
 	txtWin	:= "Control Gallery"
