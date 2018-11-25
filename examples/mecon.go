@@ -247,10 +247,9 @@ func setupUI() {
 
 	//TODO test menu item
 	mainMenu := ui.NewMenu("my menu")
-//	menuQuit := mainMenu.MenuAppendQuitItem()
+	menuQuit := mainMenu.MenuAppendQuitItem()
+	menuQuit.MenuItemEnable()
 
-
-//	menuQuit.MenuItemEnable()
 /*
 	menuQuit := ui.MenuAppendQuitItem(mainMenu)
 	mainQuit.MenuItemEnable()
