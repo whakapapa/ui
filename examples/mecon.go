@@ -238,23 +238,29 @@ func dataTab(parentWin *ui.Window) ui.Control {
 func createWindow() {
 
 	// menu structure first
-	mainMenu := ui.NewMenu("Main")
+	menMain 		:= ui.NewMenu("Main")
+	menOthers	:= ui.NewMenu("Others")
 
-	// now main menu items
-	// attach items to main menu
-	mainMenu.MenuAppendItem("dudu")
+	// main menu items
+	itDudu	:= ui.NewMenuItem()
+	itAbout	:= ui.NewMenuItem()
+	itClic	:= ui.NewMenuItem()
 
-	/*
-	menAbout := ui.NewMenuItem()
-	mainMenu.MenuAppendAboutItem(menAbout)
-	*/
+	// others menu items
+	itQuit	:= ui.NewMenuItem()
+	itPref	:= ui.NewMenuItem()
 
-	menQuit := ui.NewMenuItem()
-	mainMenu.MenuAppendQuitItem(menQuit)
+	// build main menu
+	menMain.MenuAppendItem(itDudu, "DuDu")
+	menMain.MenuAppendAboutItem(itAbout)
+	menMain.MenuAppendCheckItem(itClic, "Click Me")
 
-	//mainMenu.MenuItemEnable()
-	//mainMenu.MenuAppendSeparator()
-	//mainMenu.MenuAppendCheckItem("click me")
+	// build others menu
+	menOthers.MenuAppendQuitItem(itQuit)
+	menOthers.uiMenuAppendPreferencesItem(itPref, "click me")
+
+	//menOthers.MenuItemEnable()
+	//menOthers.MenuAppendSeparator()
 
 	// construct the main window
 	txtWin	:= "Control Gallery"

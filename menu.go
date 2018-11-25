@@ -64,7 +64,7 @@ func (m *Menu) MenuAppendAboutItem(mi *MenuItem) {
 
 
 // uiMenuAppendPreferencesItem adds preferences item
-func (m *Menu) uiMenuAppendPreferencesItem(mi *MenuItem) {
+func (m *Menu) MenuAppendPreferencesItem(mi *MenuItem) {
 	mi.mi = C.uiMenuAppendPreferencesItem(m.m)
 }
 
