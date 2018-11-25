@@ -21,8 +21,8 @@ type Menu struct {
 
 
 type MenuItem struct {
-	ControlBase
 	mi *C.uiMenuItem
+	ControlBase
 }
 
 
@@ -31,7 +31,7 @@ func NewMenu(text string) *Menu {
 	m := new(Menu)
 
 	ctext := C.CString(text)
-	C.uiNewMenu(ctext)
+	m = C.uiNewMenu(ctext)
 	freestr(ctext)
 
 	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
@@ -53,7 +53,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi := new(MenuItem)
 
 	ctext := C.CString(text)
-	C.uiMenuAppendItem(m.m, ctext)
+	mi = C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
@@ -66,7 +66,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 func (m *Menu) MenuAppendAboutItem() *MenuItem {
 	mi := new(MenuItem)
 
-	C.uiMenuAppendAboutItem(m.m)
+	mi = C.uiMenuAppendAboutItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
@@ -78,7 +78,7 @@ func (m *Menu) MenuAppendAboutItem() *MenuItem {
 func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 	mi := new(MenuItem)
 
-	C.uiMenuAppendPreferencesItem(m.m)
+	mi = C.uiMenuAppendPreferencesItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
@@ -90,7 +90,7 @@ func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)
 
-	C.uiMenuAppendQuitItem(m.m)
+	mi = C.uiMenuAppendQuitItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
@@ -103,7 +103,8 @@ func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
 	mi := new(MenuItem)
 
 	ctext := C.CString(text)
-	C.uiMenuAppendCheckItem(ctext)
+//TODO fix this
+//	C.uiMenuAppendCheckItem(ctext)
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
