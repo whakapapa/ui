@@ -235,26 +235,21 @@ func dataTab(parentWin *ui.Window) ui.Control {
 	return ctlData
 }
 
-func setupUI() {
+func createWindow() {
+
+	mainMenu := ui.NewMenu("Main")
+	backMenu := ui.NewMenu("Back")
+	backMenu.MenuAppendQuitItem()
+	//	backMenu.MenuItemEnable()
+
 
 	// construct the main window
 	txtWin	:= "Control Gallery"
 	winX		:= 640
 	winY		:= 480
-	menBar	:= false
+	menBar	:= true
 	mainWin	:= ui.NewWindow(txtWin, winX, winY, menBar)
 
-
-	//TODO test menu item
-	mainMenu := ui.NewMenu("my menu")
-	menuQuit := mainMenu.MenuAppendQuitItem()
-	menuQuit.MenuItemEnable()
-
-/*
-	menuQuit := ui.MenuAppendQuitItem(mainMenu)
-	mainQuit.MenuItemEnable()
-	//TODO END
-*/
 
 
 	// construct the main window tabs
@@ -272,12 +267,12 @@ func setupUI() {
 
 	// quit button behavior
 
-/*
-	menuQuit.MenuItemOnClicked(func(*ui.MenuItem) {
+	/*
+	backMquit.MenuItemOnClicked(func(*ui.MenuItem) {
 		ui.Quit()
 		return true
 	})
-*/
+	*/
 
 	// main window behavior
 	mainWin.OnClosing(func(*ui.Window) bool {
@@ -285,20 +280,15 @@ func setupUI() {
 		return true
 	})
 
-	/*
-	ui.OnShouldQuit(func() bool {
-		mainWin.Destroy()
-		return true
-	})
-	*/
 
 	// launch the main window
 	mainWin.SetChild(mainMenu)
+	mainWin.SetChild(backMenu)
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
 	mainWin.Show()
 }
 
 func main() {
-	ui.Main(setupUI)
+	ui.Main(createWindow)
 }
