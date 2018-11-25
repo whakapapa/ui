@@ -104,7 +104,7 @@ func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
 
 	ctext := C.CString(text)
 
-	mi.mi = C.uiMenuAppendCheckItem(ctext)
+	mi.mi = C.uiMenuAppendCheckItem(m.m, ctext)
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
