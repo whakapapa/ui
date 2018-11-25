@@ -41,7 +41,7 @@ func NewMenu(text string) *Menu {
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)
 
-	C.uiMenuAppendQuitItem(mi.mi)
+	C.uiMenuAppendQuitItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 	return mi
