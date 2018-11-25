@@ -240,14 +240,17 @@ func createWindow() {
 	// menu structure first
 	mainMenu := ui.NewMenu("Main")
 
-
+	// now main menu items
 	// attach items to main menu
-	mainMenu.MenuAppendItem("dudu")
-	mainMenu.MenuAppendAboutItem()
-	mainMenu.MenuAppendQuitItem()
+	//mainMenu.MenuAppendItem("dudu")
+	mainMabout := new(MenuItem)
+	mainMenu.MenuAppendAboutItem(mainMabout)
+
+	mainMquit := new(MenuItem)
+	mainMenu.MenuAppendQuitItem(mainMquit)
 	//mainMenu.MenuItemEnable()
 	//mainMenu.MenuAppendSeparator()
-	mainMenu.MenuAppendCheckItem("click me")
+	//mainMenu.MenuAppendCheckItem("click me")
 
 	// construct the main window
 	txtWin	:= "Control Gallery"

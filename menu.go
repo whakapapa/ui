@@ -14,7 +14,6 @@ import "C"
 
 
 // Menu is attached to windows if flag has been set to true
-/*
 type Menu struct {
 	m *C.uiMenu
 }
@@ -23,17 +22,14 @@ type Menu struct {
 type MenuItem struct {
 	mi *C.uiMenuItem
 }
-*/
 
-var Menu *C.uiMenu
-var MenuItem *C.uiMenuItem
 
 // NewMenu creates a new menu
 func NewMenu(text string) *Menu {
 	m := new(Menu)
 
 	ctext := C.CString(text)
-	m = C.uiNewMenu(ctext)
+	m.m = C.uiNewMenu(ctext)
 	freestr(ctext)
 
 	return m
@@ -42,43 +38,35 @@ func NewMenu(text string) *Menu {
 
 // MenuAppendSeparator adds a separator item
 func (m *Menu) MenuAppendSeparator() {
-	C.uiMenuAppendSeparator(m)
+	C.uiMenuAppendSeparator(m.m)
 }
 
-
+//TODO change to new logic
 // MenuAppendItem adds a custom item
 func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi := new(MenuItem)
-
 	ctext := C.CString(text)
-	mi = C.uiMenuAppendItem(m, ctext)
+	mi.mi = C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
-
 	return mi
 }
 
 
 // uiMenuAppendAboutItem adds an about item
-func (m *Menu) MenuAppendAboutItem() *MenuItem {
-	mi := new(MenuItem)
-	mi = C.uiMenuAppendAboutItem(m)
-	return mi
+func (m *Menu) MenuAppendAboutItem(mi *MenuItem) {
+	mi.mi = C.uiMenuAppendAboutItem(m.m)
 }
 
 
 // uiMenuAppendPreferencesItem adds preferences item
-func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
-	mi := new(MenuItem)
-	mi = C.uiMenuAppendPreferencesItem(m)
-	return mi
+func (m *Menu) uiMenuAppendPreferencesItem(mi *MenuItem) {
+	mi.mi = C.uiMenuAppendPreferencesItem(m.m)
 }
 
 
 // MenuAppendQuitItem adds a quit menu
-func (m *Menu) MenuAppendQuitItem() *MenuItem {
-	mi := new(MenuItem)
-	mi = C.uiMenuAppendQuitItem(m)
-	return mi
+func (m *Menu) MenuAppendQuitItem(mi *MenuItem) {
+	mi.mi = C.uiMenuAppendQuitItem(m.m)
 }
 
 
@@ -86,7 +74,7 @@ func (m *Menu) MenuAppendQuitItem() *MenuItem {
 func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
 	mi := new(MenuItem)
 	ctext := C.CString(text)
-	mi = C.uiMenuAppendCheckItem(m, ctext)
+	mi.mi = C.uiMenuAppendCheckItem(m.m, ctext)
 	freestr(ctext)
 	return mi
 }
@@ -100,13 +88,13 @@ func (mi *MenuItem) MenuItemOnClicked(f func(*MenuItem)) {
 
 // MenuItemEnable enables the menu
 func (mi *MenuItem) MenuItemEnable() {
-	C.uiMenuItemEnable(mi)
+	C.uiMenuItemEnable(mi.mi)
 }
 
 
 // MenuItemDisable disables the menu
 func (mi *MenuItem) MenuItemDisable() {
-	C.uiMenuItemDisable(mi)
+	C.uiMenuItemDisable(mi.mi)
 }
 
 
