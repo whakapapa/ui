@@ -51,10 +51,10 @@ func (m *Menu) MenuAppendSeparator() {
 func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi := new(MenuItem)
 	ctext := C.CString(text)
-	C.uiMenuAppendItem(m.m, ctext)
+	C.uiMenuAppendItem(mi.mi, ctext)
 	freestr(ctext)
 
-//	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
