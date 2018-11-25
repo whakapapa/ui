@@ -37,7 +37,7 @@ func NewMenu(text string) *Menu {
 func (m *Menu) MenuAppendSeparator() {
 	C.uiMenuAppendSeparator(m.m)
 
-	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
+//	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 }
 
 
