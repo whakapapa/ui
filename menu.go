@@ -16,6 +16,7 @@ import "C"
 // Menu is attached to windows if flag has been set to true
 type Menu struct {
 	ControlBase
+	children []Control
 	m *C.uiMenu
 }
 
