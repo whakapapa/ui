@@ -66,8 +66,7 @@ func (mi *MenuItem) MenuItemDisable() {
 
 /////////////////////////////
 /// input from C to digest
-
-// LONGTERM migrate to std::vector
+/*
 
 static uiMenu **menus = NULL;
 static size_t len = 0;
@@ -402,3 +401,5 @@ void uninitMenus(void)
 	if (menus != NULL)
 		uiprivFree(menus);
 }
+
+*/
