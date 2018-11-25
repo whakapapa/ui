@@ -271,13 +271,6 @@ func createWindow() {
 	mainTab.Append(txtData, dataTab(mainWin))
 	mainTab.SetMargined(2, true)
 
-	// quit button behavior
-	/*
-	backMquit.MenuItemOnClicked(func(*ui.MenuItem) {
-		ui.Quit()
-		return true
-	})
-	*/
 
 	// main window behavior
 	mainWin.OnClosing(func(*ui.Window) bool {
