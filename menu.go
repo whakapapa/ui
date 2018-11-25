@@ -86,7 +86,12 @@ func (m *Menu) MenuAppendCheckItem(mi *MenuItem, text string) {
 // MenuItemOnClicked triggers assoc procedure
 func (mi *MenuItem) MenuItemOnClicked(f func(*MenuItem)) {
 	//TODO empty for now
+	/*
+	_UI_EXTERN void uiMenuItemOnClicked(uiMenuItem *m, void (*f)(uiMenuItem *sender, uiWindow *window, void *data), void *data);
+	*/
 }
+
+
 
 
 // MenuItemEnable enables the menu
@@ -100,6 +105,19 @@ func (mi *MenuItem) MenuItemDisable() {
 	C.uiMenuItemDisable(mi.mi)
 }
 
+
+//TODO convert check mark and result to bool
+// verify if menu item is checked or not
+func (mi *MenuItem) MenuItemChecked() int {
+	return C.uiMenuItemChecked(mi.mi)
+}
+
+
+//TODO convert check mark and result to bool
+// set the checked flag
+func (mi *MenuItem) MenuItemSetChecked(ch int) {
+	C.uiMenuItemSetChecked(mi.mi, ch)
+}
 
 
 /////////////////////////////

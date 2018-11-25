@@ -257,7 +257,8 @@ func createWindow() {
 
 	// build others menu
 	menOthers.MenuAppendQuitItem(itQuit)
-	menOthers.uiMenuAppendPreferencesItem(itPref, "click me")
+	itQuit.MenuItemDisable()
+	menOthers.MenuAppendPreferencesItem(itPref)
 
 	//menOthers.MenuItemEnable()
 	//menOthers.MenuAppendSeparator()
@@ -268,7 +269,6 @@ func createWindow() {
 	winY		:= 480
 	menBar	:= true
 	mainWin	:= ui.NewWindow(txtWin, winX, winY, menBar)
-
 
 
 	// construct the main window tabs
