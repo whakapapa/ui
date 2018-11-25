@@ -242,7 +242,7 @@ func createWindow() {
 
 
 	// attach items to main menu
-	//mainMenu.MenuAppendItem("dudu")
+	mainMenu.MenuAppendItem("dudu")
 	//mainMenu.MenuAppendAboutItem()
 	//mainMenu.MenuAppendQuitItem()
 	//mainMenu.MenuItemEnable()
@@ -284,7 +284,7 @@ func createWindow() {
 
 
 	// launch the main window
-	mainWin.SetChild(mainMenu)
+	//mainWin.SetChild(mainMenu)
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
 	mainWin.Show()

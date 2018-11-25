@@ -32,8 +32,8 @@ func NewMenu(text string) *Menu {
 
 	ctext := C.CString(text)
 	//TODO why no assignment necessary?
-	//m.m = C.uiNewMenu(ctext)
-	C.uiNewMenu(ctext)
+	m.m = C.uiNewMenu(ctext)
+	//C.uiNewMenu(ctext)
 	freestr(ctext)
 
 	//m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
