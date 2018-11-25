@@ -63,7 +63,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 // uiMenuAppendAboutItem adds an about item
 func (m *Menu) MenuAppendAboutItem() *MenuItem {
 	mi := new(MenuItem)
-	= C.uiMenuAppendAboutItem(m.m)
+	C.uiMenuAppendAboutItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
