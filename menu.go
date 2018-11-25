@@ -55,6 +55,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	
 	return mi
 }
 
@@ -65,6 +66,8 @@ func (m *Menu) MenuAppendAboutItem() *MenuItem {
 	mi = C.uiMenuAppendAboutItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+
+	return mi
 }
 
 // MenuAppendQuitItem adds a quit menu
@@ -73,6 +76,7 @@ func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi = C.uiMenuAppendQuitItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+
 	return mi
 }
 
