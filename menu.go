@@ -32,8 +32,8 @@ func NewMenu(text string) *Menu {
 
 	ctext := C.CString(text)
 	//TODO why no assignment necessary?
-	//C.uiNewMenu(ctext)
-	m.m = C.uiNewMenu(ctext)
+	//m.m = C.uiNewMenu(ctext)
+	C.uiNewMenu(ctext)
 	freestr(ctext)
 
 	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
@@ -46,7 +46,7 @@ func (m *Menu) MenuAppendSeparator() {
 	C.uiMenuAppendSeparator(m.m)
 
 //TODO this is likely obsolete
-	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
+	// m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 }
 
 
