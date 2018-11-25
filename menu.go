@@ -57,6 +57,7 @@ func NewMenuItem() *MenuItem {
 	return new(MenuItem)
 }
 
+
 // uiMenuAppendAboutItem adds an about item
 func (m *Menu) MenuAppendAboutItem(mi *MenuItem) {
 	mi.mi = C.uiMenuAppendAboutItem(m.m)

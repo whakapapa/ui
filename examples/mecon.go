@@ -242,12 +242,16 @@ func createWindow() {
 
 	// now main menu items
 	// attach items to main menu
-	//mainMenu.MenuAppendItem("dudu")
-	mainMabout := NewMenuItem()
-	mainMenu.MenuAppendAboutItem(mainMabout)
+	mainMenu.MenuAppendItem("dudu")
 
-	mainMquit := NewMenuItem()
-	mainMenu.MenuAppendQuitItem(mainMquit)
+/*
+	menAbout := ui.NewMenuItem()
+	mainMenu.MenuAppendAboutItem(menAbout)
+
+	menQuit := NewMenuItem()
+	mainMenu.MenuAppendQuitItem(menQuit)
+*/
+
 	//mainMenu.MenuItemEnable()
 	//mainMenu.MenuAppendSeparator()
 	//mainMenu.MenuAppendCheckItem("click me")
