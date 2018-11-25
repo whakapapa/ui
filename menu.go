@@ -16,7 +16,6 @@ import "C"
 // Menu is attached to windows if flag has been set to true
 type Menu struct {
 	ControlBase
-	children []Control
 	m *C.uiMenu
 }
 
@@ -59,7 +58,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi.mi = C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
 
-	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+//	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
