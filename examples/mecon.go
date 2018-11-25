@@ -248,6 +248,7 @@ func setupUI() {
 	//TODO test menu item
 	mainMenu := ui.NewMenu("my menu")
 	menuQuit := mainMenu.MenuAppendQuitItem()
+//	menuQuit.MenuItemEnable()
 /*
 	menuQuit := ui.MenuAppendQuitItem(mainMenu)
 	mainQuit.MenuItemEnable()
@@ -266,6 +267,11 @@ func setupUI() {
 	mainTab.Append(txtData, dataTab(mainWin))
 	mainTab.SetMargined(2, true)
 
+	// quit button behavior
+	menuQuit.MenuItemOnClicked(func(*ui.MenuItem) {
+		ui.Quit()
+		return true
+	})
 	// main window behavior
 	mainWin.OnClosing(func(*ui.Window) bool {
 		ui.Quit()
@@ -277,8 +283,7 @@ func setupUI() {
 	})
 
 	// launch the main window
-//TODO remove the latter?
-	//mainWin.SetChild(mainMenu)
+	mainWin.SetChild(mainMenu)
 	mainWin.SetChild(mainTab)
 	mainWin.SetMargined(true)
 	mainWin.Show()
