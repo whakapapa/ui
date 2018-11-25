@@ -3,12 +3,15 @@
 
 package ui
 
+
 import (
 	"unsafe"
 )
 
+
 // #include "pkgui.h"
 import "C"
+
 
 // Menu is attached to windows if flag has been set to true
 type Menu struct {
@@ -16,10 +19,12 @@ type Menu struct {
 	ControlBase
 }
 
+
 type MenuItem struct {
 	ControlBase
 	mi *C.uiMenuItem
 }
+
 
 // NewMenu creates a new menu
 func NewMenu(text string) *Menu {
@@ -33,20 +38,20 @@ func NewMenu(text string) *Menu {
 	return m
 }
 
+
 // MenuAppendSeparator adds a separator item
 func (m *Menu) MenuAppendSeparator() {
 	C.uiMenuAppendSeparator(m.m)
 
-//	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
+	m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 }
 
 
 // MenuAppendItem adds a custom item
 func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi := new(MenuItem)
-
 	ctext := C.CString(text)
-	C.uiMenuAppendItem(m.m, ctext)
+	mi = C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
@@ -54,11 +59,18 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 }
 
 
+// uiMenuAppendAboutItem adds an about item
+func (m *Menu) MenuAppendAboutItem() *MenuItem {
+	mi := new(MenuItem)
+	mi = C.uiMenuAppendAboutItem(m.m)
+
+	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+}
+
 // MenuAppendQuitItem adds a quit menu
 func (m *Menu) MenuAppendQuitItem() *MenuItem {
 	mi := new(MenuItem)
-
-	C.uiMenuAppendQuitItem(m.m)
+	mi = C.uiMenuAppendQuitItem(m.m)
 
 	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 	return mi
@@ -69,6 +81,7 @@ func (m *Menu) MenuAppendQuitItem() *MenuItem {
 func (mi *MenuItem) MenuItemOnClicked(f func(*MenuItem)) {
 	//TODO empty for now
 }
+
 
 // MenuItemEnable enables the menu
 func (mi *MenuItem) MenuItemEnable() {
