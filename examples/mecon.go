@@ -244,13 +244,13 @@ func createWindow() {
 	// attach items to main menu
 	mainMenu.MenuAppendItem("dudu")
 
-/*
+	/*
 	menAbout := ui.NewMenuItem()
 	mainMenu.MenuAppendAboutItem(menAbout)
+	*/
 
-	menQuit := NewMenuItem()
+	menQuit := ui.NewMenuItem()
 	mainMenu.MenuAppendQuitItem(menQuit)
-*/
 
 	//mainMenu.MenuItemEnable()
 	//mainMenu.MenuAppendSeparator()

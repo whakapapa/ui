@@ -41,20 +41,19 @@ func (m *Menu) MenuAppendSeparator() {
 	C.uiMenuAppendSeparator(m.m)
 }
 
-//TODO change to new logic
-// MenuAppendItem adds a custom item
-func (m *Menu) MenuAppendItem(text string) *MenuItem {
-	mi := new(MenuItem)
-	ctext := C.CString(text)
-	mi.mi = C.uiMenuAppendItem(m.m, ctext)
-	freestr(ctext)
-	return mi
-}
-
 
 // creates new MenuItem object that the gui is aware of
 func NewMenuItem() *MenuItem {
 	return new(MenuItem)
+}
+
+
+//TODO change to new logic
+// MenuAppendItem adds a custom item
+func (m *Menu) MenuAppendItem(mi *MenuItem, text string) {
+	ctext := C.CString(text)
+	mi.mi = C.uiMenuAppendItem(m.m, ctext)
+	freestr(ctext)
 }
 
 
@@ -77,12 +76,10 @@ func (m *Menu) MenuAppendQuitItem(mi *MenuItem) {
 
 
 // MenuAppendCheckItem adds a check item
-func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
-	mi := new(MenuItem)
+func (m *Menu) MenuAppendCheckItem(mi *MenuItem, text string) {
 	ctext := C.CString(text)
 	mi.mi = C.uiMenuAppendCheckItem(m.m, ctext)
 	freestr(ctext)
-	return mi
 }
 
 
