@@ -45,7 +45,7 @@ func NewMenu(text string) *Menu {
 func (m *Menu) MenuAppendSeparator() {
 	C.uiMenuAppendSeparator(m.m)
 
-//TODO this is likely obsolete
+	//TODO this is likely obsolete
 	// m.ControlBase = NewControlBase(m, uintptr(unsafe.Pointer(m.m)))
 }
 
@@ -58,7 +58,7 @@ func (m *Menu) MenuAppendItem(text string) *MenuItem {
 	mi.mi = C.uiMenuAppendItem(m.m, ctext)
 	freestr(ctext)
 
-//	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	// mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
@@ -70,7 +70,7 @@ func (m *Menu) MenuAppendAboutItem() *MenuItem {
 
 	mi.mi = C.uiMenuAppendAboutItem(m.m)
 
-	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	//mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
@@ -82,7 +82,7 @@ func (m *Menu) uiMenuAppendPreferencesItem() *MenuItem {
 
 	mi.mi = C.uiMenuAppendPreferencesItem(m.m)
 
-	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	//mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
@@ -94,7 +94,7 @@ func (m *Menu) MenuAppendQuitItem() *MenuItem {
 
 	mi.mi = C.uiMenuAppendQuitItem(m.m)
 
-	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	//mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
@@ -109,7 +109,7 @@ func (m *Menu) MenuAppendCheckItem(text string) *MenuItem {
 	mi.mi = C.uiMenuAppendCheckItem(m.m, ctext)
 	freestr(ctext)
 
-	mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
+	//mi.ControlBase = NewControlBase(mi, uintptr(unsafe.Pointer(mi.mi)))
 
 	return mi
 }
