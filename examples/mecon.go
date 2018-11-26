@@ -1,8 +1,17 @@
 package main
 
-//import "github.com/andlabs/ui"
-import "github.com/whakapapa/ui"
 
+
+import (
+	"fmt"
+	"github.com/whakapapa/ui"
+	//import "github.com/andlabs/ui"
+)
+
+
+//TODO Clicker should become bool after cleaning up
+// global variable for testing purposes only
+var Clicker *int
 
 func basicTab() ui.Control {
 
@@ -242,23 +251,28 @@ func createWindow() {
 	menOthers	:= ui.NewMenu("Others")
 
 	// main menu items
-	itDudu	:= ui.NewMenuItem()
+	itRead	:= ui.NewMenuItem()
 	itAbout	:= ui.NewMenuItem()
 	itClic	:= ui.NewMenuItem()
 
 	// others menu items
 	itQuit	:= ui.NewMenuItem()
-	itPref	:= ui.NewMenuItem()
+
+	// clicking on "read" menu item will read check
+	// mark in itClic
+	itRead.MenuItemOnClicked(func (*ui.MenuItem, *ui.Window) {
+		Clicker = itClic.MenuItemChecked()
+		ui.Quit()
+	})
 
 	// build main menu
-	menMain.MenuAppendItem(itDudu, "DuDu")
+	menMain.MenuAppendItem(itRead, "Read Text")
 	menMain.MenuAppendAboutItem(itAbout)
 	menMain.MenuAppendCheckItem(itClic, "Click Me")
 
 	// build others menu
 	menOthers.MenuAppendQuitItem(itQuit)
 	itQuit.MenuItemDisable()
-	menOthers.MenuAppendPreferencesItem(itPref)
 
 	//menOthers.MenuItemEnable()
 	//menOthers.MenuAppendSeparator()
@@ -305,4 +319,5 @@ func createWindow() {
 
 func main() {
 	ui.Main(createWindow)
+	fmt.Printlln(Clicker)
 }

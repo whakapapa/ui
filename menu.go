@@ -48,7 +48,6 @@ func NewMenuItem() *MenuItem {
 }
 
 
-//TODO change to new logic
 // MenuAppendItem adds a custom item
 func (m *Menu) MenuAppendItem(mi *MenuItem, text string) {
 	ctext := C.CString(text)
@@ -57,13 +56,13 @@ func (m *Menu) MenuAppendItem(mi *MenuItem, text string) {
 }
 
 
-// uiMenuAppendAboutItem adds an about item
+// MenuAppendAboutItem adds an about item
 func (m *Menu) MenuAppendAboutItem(mi *MenuItem) {
 	mi.mi = C.uiMenuAppendAboutItem(m.m)
 }
 
 
-// uiMenuAppendPreferencesItem adds preferences item
+// MenuAppendPreferencesItem adds preferences item
 func (m *Menu) MenuAppendPreferencesItem(mi *MenuItem) {
 	mi.mi = C.uiMenuAppendPreferencesItem(m.m)
 }
@@ -84,14 +83,14 @@ func (m *Menu) MenuAppendCheckItem(mi *MenuItem, text string) {
 
 
 // MenuItemOnClicked triggers assoc procedure
-func (mi *MenuItem) MenuItemOnClicked(f func(*MenuItem)) {
+func (mi *MenuItem) MenuItemOnClicked(f func(mi *MenuItem, w *Window)) {
+	C.uiMenuItemOnClicked(mi.mi)
+
 	//TODO empty for now
 	/*
 	_UI_EXTERN void uiMenuItemOnClicked(uiMenuItem *m, void (*f)(uiMenuItem *sender, uiWindow *window, void *data), void *data);
 	*/
 }
-
-
 
 
 // MenuItemEnable enables the menu
@@ -105,7 +104,7 @@ func (mi *MenuItem) MenuItemDisable() {
 	C.uiMenuItemDisable(mi.mi)
 }
 
-/*
+
 //TODO convert check mark and result to bool
 //TODO get conversion of int between C and Go working
 // verify if menu item is checked or not
@@ -115,7 +114,7 @@ func (mi *MenuItem) MenuItemChecked() int {
 	return checked
 }
 
-
+/*
 //TODO convert check mark and result to bool
 //TODO get conversion of int between C and Go working
 // set the checked flag
