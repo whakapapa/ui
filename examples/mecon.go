@@ -260,8 +260,8 @@ func createWindow() {
 
 	// clicking on "read" menu item will read check
 	// mark in itClic
-	itRead.MenuItemOnClicked(func (*ui.MenuItem, *ui.Window) {
-		Clicker = itClic.MenuItemChecked()
+	itRead.MenuItemOnClicked(func (*ui.Window, Clicker) {
+	//	Clicker = itClic.MenuItemChecked()
 		ui.Quit()
 	})
 

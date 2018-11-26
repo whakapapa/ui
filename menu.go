@@ -83,8 +83,8 @@ func (m *Menu) MenuAppendCheckItem(mi *MenuItem, text string) {
 
 
 // MenuItemOnClicked triggers assoc procedure
-func (mi *MenuItem) MenuItemOnClicked(f func(mi *MenuItem, w *Window)) {
-	C.uiMenuItemOnClicked(mi.mi)
+func (mi *MenuItem) MenuItemOnClicked(f func(w *Window, ret *interface{}) *interface{}) {
+	C.uiMenuItemOnClicked(mi.mi, unsafe.Pointer(ret))
 
 	//TODO empty for now
 	/*
