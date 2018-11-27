@@ -105,7 +105,7 @@ func (mi *MenuItem) MenuItemDisable() {
 	C.uiMenuItemDisable(mi.mi)
 }
 
-
+/*
 //TODO convert check mark and result to bool
 //TODO get conversion of int between C and Go working
 // verify if menu item is checked or not
@@ -114,6 +114,7 @@ func (mi *MenuItem) MenuItemChecked() int {
 	checked = C.uiMenuItemChecked(mi.mi)
 	return checked
 }
+*/
 
 /*
 //TODO convert check mark and result to bool
