@@ -3,7 +3,7 @@ package main
 
 
 import (
-	"fmt"
+//	"fmt"
 	"github.com/whakapapa/ui"
 	//import "github.com/andlabs/ui"
 )
@@ -11,7 +11,7 @@ import (
 
 //TODO Clicker should become bool after cleaning up
 // global variable for testing purposes only
-var Clicker *int
+//var Clicker *int
 
 func basicTab() ui.Control {
 
@@ -258,12 +258,15 @@ func createWindow() {
 	// others menu items
 	itQuit	:= ui.NewMenuItem()
 
+//TODO function not yet implemented
+/*
 	// clicking on "read" menu item will read check
 	// mark in itClic
 	itRead.MenuItemOnClicked(func (*ui.Window, Clicker) {
 	//	Clicker = itClic.MenuItemChecked()
 		ui.Quit()
 	})
+*/
 
 	// build main menu
 	menMain.MenuAppendItem(itRead, "Read Text")

@@ -81,7 +81,8 @@ func (m *Menu) MenuAppendCheckItem(mi *MenuItem, text string) {
 	freestr(ctext)
 }
 
-
+/*
+//TODO this does not yet work...
 // MenuItemOnClicked triggers assoc procedure
 func (mi *MenuItem) MenuItemOnClicked(f func(w *Window, ret *interface{}) *interface{}) {
 	ret = C.uiMenuItemOnClicked(mi.mi, w.w, unsafe.Pointer(ret))
@@ -91,7 +92,7 @@ func (mi *MenuItem) MenuItemOnClicked(f func(w *Window, ret *interface{}) *inter
 	_UI_EXTERN void uiMenuItemOnClicked(uiMenuItem *m, void (*f)(uiMenuItem *sender, uiWindow *window, void *data), void *data);
 	*/
 }
-
+*/
 
 // MenuItemEnable enables the menu
 func (mi *MenuItem) MenuItemEnable() {
