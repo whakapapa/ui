@@ -322,5 +322,5 @@ func createWindow() {
 
 func main() {
 	ui.Main(createWindow)
-	fmt.Printlln(Clicker)
+//	fmt.Printlln(Clicker)
 }
