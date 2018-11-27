@@ -88,10 +88,10 @@ func (mi *MenuItem) MenuItemOnClicked(f func(w *Window, ret *interface{}) *inter
 	ret = C.uiMenuItemOnClicked(mi.mi, w.w, unsafe.Pointer(ret))
 
 	//TODO empty for now
-	/*
+
 	_UI_EXTERN void uiMenuItemOnClicked(uiMenuItem *m, void (*f)(uiMenuItem *sender, uiWindow *window, void *data), void *data);
-	*/
 }
+
 */
 
 // MenuItemEnable enables the menu
